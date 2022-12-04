@@ -275,6 +275,7 @@ var debounce_1 = debounce$1;function useEventListener(target, event, handler) {
     }
 
     observer = new MutationObserver(checkContent);
+    if (!observer) return;
     observer.observe(popperNode.value, {
       childList: true,
       subtree: true
