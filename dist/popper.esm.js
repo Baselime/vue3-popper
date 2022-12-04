@@ -122,14 +122,20 @@ function useContent(slots, popperNode, content) {
 
     observer = new MutationObserver(checkContent);
     if (!observer) return;
-    observer.observe(popperNode.value, {
-      childList: true,
-      subtree: true
-    });
+
+    try {
+      observer.observe(popperNode.value, {
+        childList: true,
+        subtree: true
+      });
+    } catch (_) {}
   });
   onBeforeUnmount(() => {
     if (!observer) return;
-    observer.disconnect();
+
+    try {
+      observer.disconnect();
+    } catch (_) {}
   });
   /**
    * Watch the content prop
